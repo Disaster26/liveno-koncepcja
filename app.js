@@ -1,7 +1,7 @@
 (function(){
   var top=document.getElementById('top'),bg=document.getElementById('burger');
   function sc(){top.classList.toggle('sc',window.scrollY>8)}
-  window.addEventListener('scroll',sc,{passive:true});sc();
+  window.addEventListener('scroll',function(){requestAnimationFrame(sc)},{passive:true});requestAnimationFrame(sc);
   function zamknij(){top.classList.remove('open');bg.setAttribute('aria-expanded','false');bg.setAttribute('aria-label','Otwórz menu')}
   bg.addEventListener('click',function(){var o=top.classList.toggle('open');bg.setAttribute('aria-expanded',o);bg.setAttribute('aria-label',o?'Zamknij menu':'Otwórz menu')});
   document.querySelectorAll('.menu a').forEach(function(a){a.addEventListener('click',zamknij)});
